@@ -41,6 +41,20 @@ def pattern_search(dna_seq, pattern):
 
     return positions
 
+def binary_search(sorted_list, number):
+    left = 0
+    right = len(sorted_list) - 1
+    while left <= right:
+        mid = (left + right) // 2
+
+        if sorted_list[mid] == number:
+            return mid
+        elif sorted_list[mid] < number:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return None
 
 
 def main():
@@ -48,11 +62,14 @@ def main():
     print(numbers)
     seq = read_data("sequential.json", "dna_sequence")
     print(seq)
+    ord_nums = read_data("sequential.json", "ordered_numbers")
+    print(ord_nums)
     slovnik = linear_search(numbers, 5)
     print(slovnik)
-    pattern = "AAT"
-    mnozina = pattern_search(seq, pattern)
+    mnozina = pattern_search(seq, "ATA")
     print(mnozina)
+    index = binary_search(ord_nums, 14)
+    print(index)
 
 
 
