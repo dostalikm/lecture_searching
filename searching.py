@@ -22,10 +22,38 @@ def read_data(file_name, field):
         data = json.load(file)
     return data[field]
 
+def linear_search(sequence, number):
+    positions = []
+    for idx, value in enumerate(sequence):
+        if value == number:
+            positions.append(idx)
+
+    return {
+        "positions": positions,
+        "count": len(positions)
+    }
+
+def pattern_search(dna_seq, pattern):
+    positions = set()
+    for i in range(len(dna_seq) - len(pattern) + 1):
+        if dna_seq[i:i+len(pattern)] == pattern:
+            positions.add(i)
+
+    return positions
+
+
 
 def main():
     numbers = read_data("sequential.json", "unordered_numbers")
     print(numbers)
+    seq = read_data("sequential.json", "dna_sequence")
+    print(seq)
+    slovnik = linear_search(numbers, 5)
+    print(slovnik)
+    pattern = "AAT"
+    mnozina = pattern_search(seq, pattern)
+    print(mnozina)
+
 
 
 if __name__ == '__main__':
